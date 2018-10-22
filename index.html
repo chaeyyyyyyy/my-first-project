@@ -1,13 +1,218 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>실습예제</title>
+	<meta charset="utf-8">
+	<title>game</title>
 	<style>
-		div{width: 300px; height: 300px; background: yellow;}
-	</style>>
+		body {margin: 0;
+			  padding: 0;} 
+		section {position: absolute;
+				 top:0;
+				 left: 0;
+				 width: 100%;
+				 height: 100vh;
+				 background: #000;
+				 overflow: hidden;}
+		video {opacity: 0;
+			   width: 250px;
+			   height: 400px;
+			   position: absolute;
+			   top: 30%;
+			   left: 965px;
+			   transform: translate(-50%,-50%);
+			   z-index: 3;}	
+		#stars {position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				background: url(pattern.png);}
+		#stars:nth-child(1)	{animation: animate 20s linear infinite;}
+		#stars:nth-child(2)	{animation: animate 22s linear infinite;}
+		#stars:nth-child(3)	{animation: animate 24s linear infinite;}
+		#stars:nth-child(4)	{animation: animate 26s linear infinite;}
+		#stars:nth-child(5)	{animation: animate 28s linear infinite;}
+		#stars:nth-child(6)	{animation: animate 30s linear infinite;}
+		#stars:nth-child(7)	{animation: animate 32s linear infinite;}
+		#stars:nth-child(8)	{animation: animate 34s linear infinite;}	
+		#stars:nth-child(9)	{animation: none;}
+		#nintendo {position: absolute;
+			  	   top: 50%;
+			       left: 50%;
+			       transform: translate(-50%,-50%);
+			   	   width: 500px}
+		#shot {height: 50px;
+			   width: 50px;
+			   position: absolute;
+			   top :330px;
+			   left: 940px;}	
+		#target1 {height: 25px;
+				 width: 25px;
+				 position: absolute;
+				 top: 150px;
+				 left: 950px;}
+		#target2 {height: 25px;
+				 width: 25px;
+				 position: absolute;
+				 top: 200px;
+				 left: 920px;}
+		#target3 {height: 25px;
+				 width: 25px;
+				 position: absolute;
+				 top: 215px;
+				 left: 980px;}
+		#target4 {height: 25px;
+				 width: 25px;
+				 position: absolute;
+				 top: 260px;
+				 left: 1000px;}
+		#target5 {height: 25px;
+				 width: 25px;
+				 position: absolute;
+				 top: 280px;
+				 left: 900px;}		 		 		 		 
+		#missiles {height: 100vh;
+				   width: 100%;
+				   position: absolute;}
+		#missile1{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :320px;
+			   	 left: 960px;}
+		#missile2{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :310px;
+			   	 left: 960px;}
+		#missile3{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :300px;
+			   	 left: 960px;}
+		#missile4{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :290px;
+			   	 left: 960px;}
+		#missile5{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :280px;
+			   	 left: 960px;}
+		#missile6{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :270px;
+			   	 left: 960px;}
+		#missile7{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :260px;
+			   	 left: 960px;}
+		#missile8{height: 10px;
+				 width: 10px;
+				 position: absolute;
+				 top :250px;
+			   	 left: 960px;}
+		#click {position: absolute;
+				width: 50px;
+				height: 50px;
+				bottom: 285px;
+				right: 735px;}
+		#textbox{position: absolute;
+				 bottom: 30%
+				 right:20%;
+				 background: red;}			   	 	   	 	   	 	   	 	   	 	   	 	   	 	   	 	   	      	   
+		@keyframes animate {0%{transform: rotate(0deg);}
+							100%{transform: rotate(360deg);}}				 	  
+	</style>
 </head>
 <body>
-	오늘 처음 배우는 html
-	<div>좀 더 다양하게 할 수 있어요</div>
+	<section>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+		<div id="stars"></div>
+			<img id="nintendo" src="nintendo.png" >
+			<img id="shot" src="shot.png"></div>
+			<img id="target1" src="1.png"></div>
+			<img id="target2" src="2.png"></div>
+			<img id="target3" src="3.png"></div>
+			<img id="target4" src="4.png"></div>
+			<img id="target5" src="5.png"></div>
+			<img id="missile1" src="missile.png"></div>
+			<img id="missile2" src="missile.png"></div>
+			<img id="missile3" src="missile.png"></div>
+			<img id="missile4" src="missile.png"></div>
+			<img id="missile5" src="missile.png"></div>
+			<img id="missile6" src="missile.png"></div>
+			<img id="missile7" src="missile.png"></div>
+			<img id="missile8" src="missile.png"></div>
+			<div id="missiles"></div>
+			<div id="textbox">←(좌),→(우)키를 눌러보세요</div>
+			<div id="click" onclick=a()>click</div>
+			</div>
+			<video src="game.mp4"></video>
+	</section>
+	<script>
+		var i = 0;
+		var shot = {top: 330,
+					left: 940};
+		var missiles = [];
+		
+		function a(){
+				var video = document.querySelector("video");
+				i +=1;
+				if(i%2==1){
+				video.style.opacity = 1;
+				video.play();}
+				else if(i%2==0){
+				video.style.opacity = 0;
+				video.currentTime = 0;
+				video.pause();}	 
+		}
+
+		document.onkeydown = function (e) {
+			console.log(e.keyCode);
+
+			if (e.keyCode === 37){
+				console.log("LEFT")
+				shot.left = shot.left - 10;
+				moveShot();
+			}
+			else if (e.keyCode === 39){
+				console.log("RIGHT")
+				shot.left = shot.left + 10;
+				moveShot();
+			}
+			else if (e.keyCode === 32){
+				console.log("FIRE");
+				missiles.push({
+					left: shot.left + 15,
+					top: shot.top
+				})
+				drawMissiles()
+			}
+		}
+		
+		function moveShot () {
+			document.getElementById('shot').style.left = shot.left + "px";
+		}
+
+		function drawMissiles() {
+			document.getElementById('missiles').innerHTML = "";
+			for (var missile = 0; missile < missiles.length; missile= missle + 1){
+				document.getElementById('missiles').innerHTML += `<img id='missile' src='missile.png' style='left:${missile[missile].left}px; top:${missiles[missile].top}px;'></div>`;
+				}
+		}
+		function gameLoop(){
+			setTimeout(console.log('hi'),100)
+		}
+	</script>
 </body>
 </html>
